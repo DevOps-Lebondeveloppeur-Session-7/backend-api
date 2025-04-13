@@ -2,7 +2,7 @@ name: Pipeline backend
 
 on:
     push:
-        branches: [master, main, develop]
+        branches: [ develop ]
            
 env:
     IMAGE_NAME: talel12/back-session7
