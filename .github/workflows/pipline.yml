@@ -44,10 +44,10 @@ jobs:
                   process.exit(1);
                 }
                 "
-                - name: Create GitHub Issue if Tests Fail
-                if: always()
-                uses: actions/github-script@v6
-                with:
+            - name: Create GitHub Issue if Tests Fail
+              if: always()
+              uses: actions/github-script@v6
+              with:
                   github-token: ${{ secrets.GH_PERSONAL_TOKEN }}  # ✅ Use the new token
                   script: |
                     const title = `🚨 Unit Test Failed on ${context.ref}`;
