@@ -58,7 +58,7 @@ jobs:
               with:
                   github-token: ${{ secrets.GH_PERSONAL_TOKEN }}
                   script: |
-                    const title = `🚨 Unit Test Failed on ${github.event.head_commit.message}`;
+                    const title = `🚨 Unit Test Failed on ${github.context.payload.head_commit.message}`;
                     const body = `
                     ## Unit test failure
               
