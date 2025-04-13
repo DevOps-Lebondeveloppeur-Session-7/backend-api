@@ -44,7 +44,32 @@ jobs:
                   process.exit(1);
                 }
                 "
-
+                - name: Create GitHub Issue if Tests Fail
+                if: steps.check-tests.outputs.failed == 'true'
+                uses: actions/github-script@v6
+                with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  script: |
+                    const title = `🚨 Unit Test Failed on ${context.ref}`;
+                    const body = `
+                    ## Unit test failure
+              
+                    **Branch:** \`${context.ref}\`  
+                    **Commit:** [${context.sha}](https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha})  
+                    **Run:** [Workflow Run #${context.runId}](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
+              
+                    Please check the Jest test report artifact for details.
+                    `;
+              
+                    await github.rest.issues.create({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      title,
+                      body,
+                      labels: ['bug', 'test-failure'],
+                      assignees: [context.actor] // 👈 assign commit author
+                    });
+              
             - uses: act10ns/slack@v2
               if: always()
               with:
