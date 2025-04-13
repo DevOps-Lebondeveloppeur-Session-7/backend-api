@@ -1,12 +1,13 @@
 {
   "name": "backend-api",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "jest"
+    "test": "jest",
+    "release": "release-it"
   },
   "type": "module",
   "keywords": [],
@@ -24,6 +25,13 @@
     "babel-jest": "^29.7.0",
     "jest": "^29.7.0",
     "nodemon": "^3.1.4",
+    "release-it": "^18.1.2",
     "supertest": "^7.0.0"
+  },
+  "release-it": {
+    "$schema": "https://unpkg.com/release-it/schema/release-it.json",
+    "github": {
+      "release": true
+    }
   }
 }
