@@ -45,7 +45,7 @@ jobs:
                 }
                 "
             - name: Create GitHub Issue if Tests Fail
-              if: steps.check-tests.outputs.failed == 'true'
+              if: steps.check-tests.outcome == 'failure'
               uses: actions/github-script@v6
               with:
                 github-token: ${{ secrets.GITHUB_TOKEN }}
