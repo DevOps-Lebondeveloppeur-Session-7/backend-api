@@ -29,9 +29,17 @@
     "supertest": "^7.0.0"
   },
   "release-it": {
-    "$schema": "https://unpkg.com/release-it/schema/release-it.json",
     "github": {
       "release": true
+    },
+    "git": {
+      "tagName": "v${version}",
+      "commitMessage": "chore: release v${version}",
+      "requireCleanWorkingDir": true
+    },
+    "hooks": {
+      "after:bump": "echo Version bumped!",
+      "after:release": "echo Successfully released!"
     }
   }
 }
