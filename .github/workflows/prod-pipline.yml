@@ -9,9 +9,6 @@ env:
   IMAGE_NAME: talel12/back-session7
   BUILD_NUMBER: ${{ github.run_number }}
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-  PRODUCTION_HOST: ${{ secrets.PRODUCTION_HOST }}
-  PRODUCTION_USER: ${{ secrets.PRODUCTION_USER }}
-  PRODUCTION_PASSWORD: ${{ secrets.PRODUCTION_PASSWORD }}
 
 jobs:
   unit-test:
@@ -164,9 +161,9 @@ jobs:
         id: deploy-prod
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ env.PRODUCTION_HOST }}
-          username: ${{ env.PRODUCTION_USER }}
-          password: ${{ env.PRODUCTION_PASSWORD }}
+          host: ${{ secrets.HOST }}
+          username: user
+          password: ${{ secrets.PASSWORD }}
           script: |
             cd /path/to/production/deployment
             sudo docker-compose pull
