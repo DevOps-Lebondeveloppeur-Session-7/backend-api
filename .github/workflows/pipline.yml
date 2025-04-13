@@ -45,10 +45,10 @@ jobs:
                 }
                 "
             - name: Create GitHub Issue if Tests Fail
-              if: always()
               uses: actions/github-script@v6
+              if: ${{steps.check-tests.outcome == 'failure'}}
               with:
-                  github-token: ${{ secrets.GH_PERSONAL_TOKEN }}  # ✅ Use the new token
+                  github-token: ${{ secrets.GH_PERSONAL_TOKEN }}
                   script: |
                     const title = `🚨 Unit Test Failed on ${context.ref}`;
                     const body = `
