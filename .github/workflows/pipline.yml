@@ -54,7 +54,7 @@ jobs:
                 "
             - name: Create GitHub Issue if Tests Fail
               uses: actions/github-script@v6
-              if: always()
+              if: failure()
               with:
                   github-token: ${{ secrets.GH_PERSONAL_TOKEN }}
                   script: |
