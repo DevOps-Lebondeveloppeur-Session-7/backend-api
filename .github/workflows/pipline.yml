@@ -56,7 +56,7 @@ jobs:
               uses: actions/github-script@v6
               if: ${{steps.check-tests.outcome == 'failure'}}
               with:
-                  github-token: ${{ secrets.GH_PERSONAL_TOKEN }}
+                  github-token: ${{ GITHUB.token }}
                   script: |
                     const title = `🚨 Unit Test Failed on ${context.ref}`;
                     const body = `
